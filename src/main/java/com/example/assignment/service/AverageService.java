@@ -1,6 +1,7 @@
 package com.example.assignment.service;
 
 
+import com.example.assignment.model.ResultResponse;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -18,7 +19,7 @@ public class AverageService {
     private final Set<Integer> numberSet = new HashSet<>();
     private static final int WINDOW_SIZE = 10;
 
-    public Map<String, Object> calculateAverage(String id, String token) {
+    public ResultResponse calculateAverage(String id, String token) {
         List<Integer> prevState = new ArrayList<>(numberWindow);
 
         // Fetch new numbers based on ID
@@ -48,11 +49,7 @@ public class AverageService {
 
         double avg = numberWindow.stream().mapToInt(i -> i).average().orElse(0);
 
-        return Map.of(
-                "windowPrevState", prevState,
-                "windowCurrState", new ArrayList<>(numberWindow),
-                "numbers", newNumbers,
-                "avg", String.format("%.2f", avg)
-        );
+        ResultResponse resultResponse=new ResultResponse(prevState,new ArrayList<>(numberWindow),newNumbers,avg);
+        return resultResponse;
     }
 }

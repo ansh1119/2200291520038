@@ -1,6 +1,7 @@
 package com.example.assignment.controllers;
 
 
+import com.example.assignment.model.ResultResponse;
 import com.example.assignment.service.AverageService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
@@ -26,8 +27,8 @@ public class AverageController {
 
 
     @GetMapping("/{numberid}")
-    public ResponseEntity<Map<String,Object>> getAverageOfNumbers(@PathVariable String numberid){
-        Map<String,Object> result=averageService.calculateAverage(numberid,token);
+    public ResponseEntity<ResultResponse> getAverageOfNumbers(@PathVariable String numberid){
+        ResultResponse result=averageService.calculateAverage(numberid,token);
         return ResponseEntity.ok(result);
     }
 }
