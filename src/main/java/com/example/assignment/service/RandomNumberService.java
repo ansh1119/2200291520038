@@ -19,11 +19,11 @@ public class RandomNumberService {
         this.webClient = builder.baseUrl("http://20.244.56.144/evaluation-service").build();
     }
 
-    public List<Integer> fetchEvenNumbers(String token) {
-
+    public List<Integer> fetchNumbers(String token,String type) {
+        String req="/"+type;
         try {
             Map<String, List<Integer>> response = webClient.get()
-                    .uri("/even")
+                    .uri(req)
                     .header("Authorization", "Bearer " + token)
                     .retrieve()
                     .bodyToMono(Map.class)
