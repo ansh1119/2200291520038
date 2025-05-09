@@ -12,7 +12,7 @@ import java.util.Map;
 @Service
 public class RandomNumberService {
 
-    @Autowired
+
     private final WebClient webClient;
 
     public RandomNumberService(WebClient.Builder builder) {
@@ -31,6 +31,7 @@ public class RandomNumberService {
                     .onErrorReturn(Map.of("numbers", List.of()))
                     .block();
 
+            System.out.println("Response from API: " + response); // Debugging log
             return (List<Integer>) response.get("numbers");
         } catch (Exception e) {
             return List.of();

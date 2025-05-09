@@ -21,16 +21,16 @@ public class AverageService {
     public Map<String, Object> calculateAverage(String id, String token) {
         List<Integer> prevState = new ArrayList<>(numberWindow);
 
-//        // Fetch new numbers based on ID
-//        List<Integer> newNumbers = switch (id) {
-//            case "e" -> numberService.fetchEvenNumbers(token,"e");
-//            case "p" -> numberService.fetchPrimeNumbers(token);
-//            case "f" -> numberService.fetchFibonacciNumbers(token);
-//            case "r" -> numberService.fetchRandomNumbers(token);
-//            default -> List.of();
-//        };
+        // Fetch new numbers based on ID
+        List<Integer> newNumbers = switch (id) {
+            case "e" -> numberService.fetchNumbers(token,"even");
+            case "p" -> numberService.fetchNumbers(token,"primes");
+            case "f" -> numberService.fetchNumbers(token,"fibo");
+            case "r" -> numberService.fetchNumbers(token,"rand");
+            default -> List.of();
+        };
 
-        List<Integer> newNumbers = numberService.fetchNumbers(token,id);
+//        List<Integer> newNumbers = numberService.fetchNumbers(token,id);
 
 
         //keeping the unique elements in set while maintaining order in the deque
